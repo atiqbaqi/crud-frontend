@@ -6,7 +6,7 @@
             <h5 class="card-title">Events</h5>
         </div>
         <div class="card-body"> 
-            <table id="example" class="display" style="width:100%">
+            <table id="events" class="display" style="width:100%">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -196,8 +196,9 @@
 
 <script>
     $(document).ready(function () {
-    $('#example').DataTable({
-        "pagingType": "full_numbers",
+    $('#events').DataTable({
+        scrollX: true,
+        "pagingType": "simple_numbers",
         "pageLength": 5
     });
 });
