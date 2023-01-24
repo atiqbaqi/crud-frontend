@@ -6,5 +6,6 @@ router.get('/create', async (req, res)=> {
 });
 
 router.post('/create', EventController.createEvent);
+router.get('/events', EventController.listEvents);
 
 module.exports=router;

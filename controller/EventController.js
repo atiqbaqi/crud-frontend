@@ -36,5 +36,9 @@ module.exports = {
             console.log(error);
             return res.redirect('/create');
         }
+    },
+
+    async listEvents(req,res){
+        res.render('events');
     }
 }
