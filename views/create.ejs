@@ -1,0 +1,90 @@
+<%- include('./layout/header'); -%>
+
+<div class="container-fluid">
+    <div class="card col-md-10" style="margin: .5rem;">
+        <div class="card-header">
+            <h5 class="card-title">Events</h5>
+        </div>
+        <div class="card-body"> 
+            <div id="loader" class="d-flex justify-content-center visually-hidden">
+                <div class="spinner-border" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            <form method="post" url="/create" id="myform" class="needs-validation" novalidate>
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <label for="event_name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="event_name" name="event_name" required>
+                        <div class="invalid-feedback">
+                            Please provide event name.
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-8">
+                        <!-- <input type="text" class="form-control text-center" id="event_location" name="event_location" required> -->
+                        <label for="event_location" class="form-label">Location</label>
+                        <select class="form-select" aria-label="Default select example" name="event_location" required>
+                            <option selected disabled value="">Select</option>
+                            <option value="Russia">Russia</option>
+                            <option value="USA">USA</option>
+                            <option value="Japan">Japan</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Please select a country.
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <label for="event_date" class="form-label">Date</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control datetimepicker" id="event_date" name="event_date" required>
+                            <span class="input-group-text">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                            <div class="invalid-feedback">
+                                Please select event date.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 text-end">
+                        <button type="submit" class="btn btn-primary col-1">Create</button>
+                    </div>
+                    
+                </div>
+            
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('./layout/scripts'); -%>
+
+<script>
+    $('.datetimepicker').datetimepicker({
+			format: 'YYYY-MM-DD HH:mm'
+		});
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+            }, false)
+        })
+</script>
+
+<%- include('./layout/footer'); -%>
+
+
+
