@@ -9,8 +9,8 @@ module.exports = {
         try {
             let token;
             await axios_instance.post('/api/login',{user_name:process.env.API_USER,password:process.env.API_PASSWORD})
-            .then((res) => {
-                token = res.data.token;
+            .then((response) => {
+                token = response.data.token;
             }).catch((error) => {
                 console.error(error);
             });
@@ -26,8 +26,8 @@ module.exports = {
             };
 
             await axios_instance(post_event)
-            .then((res) => {
-                console.log(res.data);
+            .then((response) => {
+                console.log(response.data);
               }).catch((error) => {
                 console.error(error);
               });
@@ -39,6 +39,39 @@ module.exports = {
     },
 
     async listEvents(req,res){
-        res.render('events');
+        try {
+            let token;
+            await axios_instance.post('/api/login',{user_name:process.env.API_USER,password:process.env.API_PASSWORD})
+            .then((response) => {
+                token = response.data.token;
+            }).catch((error) => {
+                console.error(error);
+            });
+
+            const list_event = {
+                method: 'get',
+                url: '/api/events',
+                headers: { 
+                    'Authorization': 'Bearer ' + token, 
+                    'Content-Type': 'application/json'
+                },
+                params:{
+                    page:req.query.page||1,
+                    size:req.query.size||5
+                }
+            };
+
+            let data;
+            await axios_instance(list_event)
+            .then((response)=>{
+                data = response.data;
+            }).catch((err)=>{
+                console.log(err);
+            });
+            return res.render('events',data);
+        } catch (error) {
+            console.log(error);
+            return res.render('events');
+        }
     }
 }
