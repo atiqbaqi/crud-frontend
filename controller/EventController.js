@@ -99,7 +99,7 @@ module.exports = {
         }
     },
 
-    async editEvent(req, res){
+    async getEvent(req, res){
         try {
             const id = req.params.id;
             console.log(id);
@@ -120,6 +120,58 @@ module.exports = {
                     'Content-Type': 'application/json'
                 }
             };
+            let event;
+            await axios_instance(get_event_by_id).then((response)=>{
+                event = response.data;
+            }).catch((error) => {
+                console.log(error);
+            });
+            console.log(event);
+            return res.render('edit',{event:event});
+        } catch (error) {
+            console.log(error);
+            return res.render('create');
+        }
+    },
+
+    async editEvent(req, res) {
+        try {
+            const id = req.params.id;
+            console.log(id);
+
+            let token;
+            await axios_instance.post('/api/login',{user_name:process.env.API_USER,password:process.env.API_PASSWORD})
+            .then((response) => {
+                token = response.data.token;
+            }).catch((error) => {
+                console.error(error);
+            });
+
+            const update_event = {
+                method: 'put',
+                url: '/api/events/'+id,
+                headers: { 
+                    'Authorization': 'Bearer ' + token, 
+                    'Content-Type': 'application/json'
+                },
+                data:req.body
+            };
+            
+            await axios_instance(update_event).then((response)=>{
+                console.log(response);
+            }).catch((error)=>{
+                console.log(error);
+            })
+
+            const get_event_by_id = {
+                method: 'get',
+                url: '/api/events/'+id,
+                headers: { 
+                    'Authorization': 'Bearer ' + token, 
+                    'Content-Type': 'application/json'
+                }
+            };
+
             let event;
             await axios_instance(get_event_by_id).then((response)=>{
                 event = response.data;

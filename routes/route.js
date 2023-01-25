@@ -7,7 +7,8 @@ router.get('/create', async (req, res)=> {
 });
 
 //edit page
-router.get('/edit/:id', EventController.editEvent);
+router.get('/edit/:id', EventController.getEvent);
+router.post('/edit/:id', EventController.editEvent);
 
 //create a new event
 router.post('/create', EventController.createEvent);

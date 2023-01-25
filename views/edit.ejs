@@ -5,14 +5,9 @@
         <div class="card-header">
             <h5 class="card-title">Events</h5>
         </div>
-        <div class="card-body"> 
-            <div id="loader" class="d-flex justify-content-center visually-hidden">
-                <div class="spinner-border" role="status">
-                  <span class="visually-hidden">Loading...</span>
-                </div>
-            </div>
-            <form method="post" url="/create" id="myform" class="needs-validation" novalidate>
-                <label class="primary">Hi <% if (typeof event !== 'undefined') { %><p><%- event.id %></p><% } %></label>
+        <div class="card-body">
+            <form method="post" url="/edit" id="myform" class="needs-validation" novalidate>
+                <input type="hidden" value="<%- event.id %>" name="id">
                 <div class="row mb-3">
                     <div class="col-12">
                         <label for="event_name" class="form-label">Name</label>
@@ -27,11 +22,12 @@
                         <!-- <input type="text" class="form-control text-center" id="event_location" name="event_location" required> -->
                         <label for="event_location" class="form-label">Location</label>
                         <select class="form-select" aria-label="Default select example" name="event_location" required>
-                            <option selected disabled value="">Select</option>
-                            <option value="Russia">Russia</option>
-                            <option value="USA">USA</option>
-                            <option value="Japan">Japan</option>
+                            <option disabled value="">Select</option>
+                            <option value="Russia" <%= event.event_location === 'Russia' ? 'selected' : '' %>>Russia</option>
+                            <option value="USA" <%= event.event_location === 'USA' ? 'selected' : '' %>>USA</option>
+                            <option value="Japan" <%= event.event_location === 'Japan' ? 'selected' : '' %>>Japan</option>
                         </select>
+                        
                         <div class="invalid-feedback">
                             Please select a country.
                         </div>
@@ -39,7 +35,7 @@
                     <div class="col-4">
                         <label for="event_date" class="form-label">Date</label>
                         <div class="input-group">
-                            <input type="text" class="form-control datetimepicker" id="event_date" name="event_date" required>
+                            <input type="text" class="form-control datetimepicker" id="event_date" name="event_date" value="<%- event.event_date %>" required>
                             <span class="input-group-text">
                                 <i class="fa fa-calendar"></i>
                             </span>
@@ -51,7 +47,7 @@
                 </div>
                 <div class="row">
                     <div class="col-12 text-end">
-                        <button type="submit" class="btn btn-primary col-1">Create</button>
+                        <button type="submit" class="btn btn-primary col-1">Edit</button>
                     </div>
                     
                 </div>
