@@ -37,7 +37,7 @@
             url: '/server-side-processing',
             dataSrc: function (json) {
                 json.data.forEach(function(row) {
-                    row.push(`<a href='edit/${row[0]}'>Edit</a>`);
+                    row.push(`<a href='edit/${row[0]}'>Edit</a> <a href='delete/${row[0]}'>Delete</a>`);
                 });
                 return json.data;
             }
@@ -47,13 +47,13 @@
             {data: 1},
             {data: 2},
             {data: 3},
-            {data: 6, defaultContent: `<a href='#'>Edit</a>`}
+            {data: 6, defaultContent: `<a href='#'>Edit</a> <a href='#'>Delete</a>`}
         ],
         columnDefs: [
             {
                 target: 0,
                 visible: false,
-                searchable: false,
+                searchable: false
             },
         ],
     });

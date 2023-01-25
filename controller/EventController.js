@@ -182,7 +182,42 @@ module.exports = {
             return res.render('edit',{event:event});
         } catch (error) {
             console.log(error);
-            return res.render('create');
+            return res.render('events');
+        }
+    },
+
+    async deleteEvent(req, res){
+        try {
+            const id = req.params.id;
+            console.log(id);
+
+            let token;
+            await axios_instance.post('/api/login',{user_name:process.env.API_USER,password:process.env.API_PASSWORD})
+            .then((response) => {
+                token = response.data.token;
+            }).catch((error) => {
+                console.error(error);
+            });
+
+            const delete_event_by_id = {
+                method: 'delete',
+                url: '/api/events/'+id,
+                headers: { 
+                    'Authorization': 'Bearer ' + token, 
+                    'Content-Type': 'application/json'
+                }
+            };
+
+            await axios_instance(delete_event_by_id).then((response) => {
+                console.log(response);
+            }).catch((error) => {
+                console.log(error);
+            });
+
+            return res.redirect('/events');
+        } catch (error) {
+            console.log(error);
+            return res.render('events');
         }
     }
 }

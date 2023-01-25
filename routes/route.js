@@ -18,6 +18,9 @@ router.get('/events', EventController.listEvents);
 
 //pagination for datatable
 router.get('/server-side-processing',EventController.serverSideProcessing);
+
+//delete event
+router.get('/delete/:id', EventController.deleteEvent);
   
 
 module.exports=router;
