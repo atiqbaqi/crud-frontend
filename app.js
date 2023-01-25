@@ -11,6 +11,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(route);
 
+app.get('/', async (req, res) => {
+    return res.render('index');
+});
+
 app.listen(app_port,()=>{
     console.log(`listening on ${app_port}`);
 });
