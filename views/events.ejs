@@ -36,7 +36,7 @@
             url: '/server-side-processing',
             dataSrc: function (json) {
                 json.data.forEach(function(row) {
-                    row.push(`<a href='events/${row[0]}'>Edit</a>`);
+                    row.push(`<a href='edit/${row[0]}'>Edit</a>`);
                 });
                 return json.data;
             }
