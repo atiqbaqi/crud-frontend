@@ -13,6 +13,7 @@
                         <th>Name</th>
                         <th>Location</th>
                         <th>Date</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 
@@ -26,23 +27,27 @@
 <script>
     $(document).ready(function () {
     $('#events').DataTable({
-        lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+        lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50]],
         pageLength: 5, 
-        "processing": true,
-        "serverSide": true,
-        ajax: '/server-side-processing',
-        // columns: [
-        //     { data: 'sl' },
-        //     { data: 'event_name' },
-        //     { data: 'event_location' },
-        //     { data: 'event_date' },
-        //     {
-        //         data: 'id',
-        //         render: function ( data, type, row ) {
-        //             return '<a href="/events/'+data+'">Edit</a>';
-        //         }
-        //     }
-        // ],
+        searching: false,
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: '/server-side-processing',
+            dataSrc: function (json) {
+                json.data.forEach(function(row) {
+                    row.push(`<a href='events/${row[0]}'>Edit</a>`);
+                });
+                return json.data;
+            }
+        },
+        columns: [
+            {data: 0},
+            {data: 1},
+            {data: 2},
+            {data: 3},
+            {data: 6, defaultContent: `<a href='#'>Edit</a>`}
+        ],
         columnDefs: [
             {
                 target: 0,

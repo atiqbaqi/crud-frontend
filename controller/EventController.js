@@ -113,11 +113,12 @@ module.exports = {
             }).catch((err)=>{
                 console.log(err);
             });
-            
+            console.log(result);
             let dataArray = (result.data).map(function(obj) {
                 return Object.values(obj);
             });
             result.data = dataArray;
+            console.log(dataArray);
             // result.recordsTotal = 14;
             result.recordsFiltered = result.recordsTotal;
             res.json(result);
