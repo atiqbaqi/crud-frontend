@@ -9,27 +9,13 @@
             <table id="events" class="display" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Sl</th>
+                        <th>id</th>
                         <th>Name</th>
                         <th>Location</th>
                         <th>Date</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <% sl=1 %>
-                    <% if(events.length > 0) {
-                        events.forEach(event=>{ %>
-                            <tr>
-                                <td><%- sl %></td>
-                                <td><%- event.event_name %></td>
-                                <td><%- event.event_location %></td>
-                                <td><%- event.event_date %></td>
-
-                               
-                            </tr>
-
-                        <% sl++; }) }%>                   
-                </tbody>
+                
             </table>
         </div>
     </div>
@@ -40,9 +26,30 @@
 <script>
     $(document).ready(function () {
     $('#events').DataTable({
-        scrollX: true,
-        "pagingType": "simple_numbers",
-        "pageLength": 5
+        lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+        pageLength: 5, 
+        "processing": true,
+        "serverSide": true,
+        ajax: '/server-side-processing',
+        // columns: [
+        //     { data: 'sl' },
+        //     { data: 'event_name' },
+        //     { data: 'event_location' },
+        //     { data: 'event_date' },
+        //     {
+        //         data: 'id',
+        //         render: function ( data, type, row ) {
+        //             return '<a href="/events/'+data+'">Edit</a>';
+        //         }
+        //     }
+        // ],
+        columnDefs: [
+            {
+                target: 0,
+                visible: false,
+                searchable: false,
+            },
+        ],
     });
 });
 </script>
