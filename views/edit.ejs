@@ -4,6 +4,7 @@
     <div class="card col-md-10" style="margin: .5rem;">
         <div class="card-header">
             <h5 class="card-title">Events</h5>
+            <h6 class="card-subtitle text-muted">Edit an event! - <a href="/events">Back</a></h6>
         </div>
         <div class="card-body">
             <form method="post" url="/edit" id="myform" class="needs-validation" novalidate>
@@ -61,7 +62,8 @@
 
 <script>
     $('.datetimepicker').datetimepicker({
-			format: 'YYYY-MM-DD HH:mm'
+			format: 'YYYY-MM-DD HH:mm',
+            defaultDate: null
 		});
 
         // Fetch all the forms we want to apply custom Bootstrap validation styles to
