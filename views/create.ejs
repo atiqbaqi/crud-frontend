@@ -28,13 +28,13 @@
                             <option value="Japan">Japan</option>
                         </select>
                         <div class="invalid-feedback">
-                            Please select a country.
+                            Please select a location.
                         </div>
                     </div>
                     <div class="col-4">
                         <label for="event_date" class="form-label">Date</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control datetimepicker" id="event_date" name="event_date" required>
+                        <div class="input-group" id="datetimepicker">
+                            <input type="text" class="form-control" id="event_date" name="event_date" required>
                             <span class="input-group-text">
                                 <i class="fa fa-calendar"></i>
                             </span>
@@ -62,7 +62,7 @@
 <%- include('./layout/scripts'); -%>
 
 <script>
-    $('.datetimepicker').flatpickr({
+    $('#datetimepicker').flatpickr({
         enableTime: true,
         dateFormat: "Y-m-d H:i",
     });
