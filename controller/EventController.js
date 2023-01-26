@@ -1,20 +1,13 @@
 const axios = require('axios');
-const { response } = require('express');
 
 const axios_instance = axios.create({
     baseURL: process.env.BACKEND_API_BASEURL
-  });
+});
 
 module.exports = {
     async createEvent(req,res){
         try {
-            let token;
-            await axios_instance.post('/api/login',{user_name:process.env.API_USER,password:process.env.API_PASSWORD})
-            .then((response) => {
-                token = response.data.token;
-            }).catch((error) => {
-                console.error(error);
-            });
+            const token = req.token;
 
             const post_event = {
                 method: 'post',
@@ -56,13 +49,7 @@ module.exports = {
             const draw = parseInt(req.query.draw);
             console.log(page+'>>'+size+'>>'+draw);
 
-            let token;
-            await axios_instance.post('/api/login',{user_name:process.env.API_USER,password:process.env.API_PASSWORD})
-            .then((response) => {
-                token = response.data.token;
-            }).catch((error) => {
-                console.error(error);
-            });
+            let token = req.token;
 
             const list_event = {
                 method: 'get',
@@ -104,13 +91,7 @@ module.exports = {
             const id = req.params.id;
             console.log(id);
 
-            let token;
-            await axios_instance.post('/api/login',{user_name:process.env.API_USER,password:process.env.API_PASSWORD})
-            .then((response) => {
-                token = response.data.token;
-            }).catch((error) => {
-                console.error(error);
-            });
+            let token = req.token;
 
             const get_event_by_id = {
                 method: 'get',
@@ -139,13 +120,7 @@ module.exports = {
             const id = req.params.id;
             console.log(id);
 
-            let token;
-            await axios_instance.post('/api/login',{user_name:process.env.API_USER,password:process.env.API_PASSWORD})
-            .then((response) => {
-                token = response.data.token;
-            }).catch((error) => {
-                console.error(error);
-            });
+            let token =req.token;
 
             const update_event = {
                 method: 'put',
@@ -175,13 +150,7 @@ module.exports = {
             const id = req.params.id;
             console.log(id);
 
-            let token;
-            await axios_instance.post('/api/login',{user_name:process.env.API_USER,password:process.env.API_PASSWORD})
-            .then((response) => {
-                token = response.data.token;
-            }).catch((error) => {
-                console.error(error);
-            });
+            let token = req.token;
 
             const delete_event_by_id = {
                 method: 'delete',

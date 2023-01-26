@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const EventController = require('../controller/EventController');
+const auth = require('../middleware/auth');
 
 //create page
 router.get('/create', async (req, res)=> {
@@ -7,20 +8,20 @@ router.get('/create', async (req, res)=> {
 });
 
 //edit page
-router.get('/edit/:id', EventController.getEvent);
-router.post('/edit/:id', EventController.editEvent);
+router.get('/edit/:id', auth, EventController.getEvent);
+router.post('/edit/:id', auth, EventController.editEvent);
 
 //create a new event
-router.post('/create', EventController.createEvent);
+router.post('/create', auth, EventController.createEvent);
 
 //list events
-router.get('/events', EventController.listEvents);
+router.get('/events', auth, EventController.listEvents);
 
 //pagination for datatable
-router.get('/server-side-processing',EventController.serverSideProcessing);
+router.get('/server-side-processing', auth,EventController.serverSideProcessing);
 
 //delete event
-router.get('/delete/:id', EventController.deleteEvent);
+router.get('/delete/:id', auth, EventController.deleteEvent);
   
 
 module.exports=router;
