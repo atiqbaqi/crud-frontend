@@ -161,25 +161,9 @@ module.exports = {
                 console.log(response);
             }).catch((error)=>{
                 console.log(error);
-            })
-
-            const get_event_by_id = {
-                method: 'get',
-                url: '/api/events/'+id,
-                headers: { 
-                    'Authorization': 'Bearer ' + token, 
-                    'Content-Type': 'application/json'
-                }
-            };
-
-            let event;
-            await axios_instance(get_event_by_id).then((response)=>{
-                event = response.data;
-            }).catch((error) => {
-                console.log(error);
             });
-            console.log(event);
-            return res.render('edit',{event:event});
+
+            return res.redirect('/edit/'+id);
         } catch (error) {
             console.log(error);
             return res.render('events');
