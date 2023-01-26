@@ -15,13 +15,17 @@ router.post('/edit/:id', auth, EventController.editEvent);
 router.post('/create', auth, EventController.createEvent);
 
 //list events
-router.get('/events', auth, EventController.listEvents);
+router.get('/events', EventController.listEvents);
 
 //pagination for datatable
 router.get('/server-side-processing', auth,EventController.serverSideProcessing);
 
 //delete event
 router.get('/delete/:id', auth, EventController.deleteEvent);
-  
+
+//error page
+router.get('/error', async (req, res)=> {
+    res.render('error');
+});  
 
 module.exports=router;

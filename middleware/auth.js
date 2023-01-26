@@ -9,11 +9,11 @@ const auth = async (req, res, next) => {
         await axios_instance.post('/api/login',{user_name:process.env.API_USER,password:process.env.API_PASSWORD})
             .then((response) => {
                 req.token = response.data.token;
+                next();
             }).catch((error) => {
                 console.error(error);
-                return res.status(500).send('Something went wrong');
+                return res.redirect('/error');
             });
-        next();
     } catch (error) {
         return res.status(500).send('Authentication error: ' + error.message);
     }

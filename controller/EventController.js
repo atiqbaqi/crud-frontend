@@ -46,8 +46,6 @@ module.exports = {
             const start = parseInt(req.query.start);
             const size = parseInt(req.query.length);
             let page = Math.floor(start / size) + 1;
-            const draw = parseInt(req.query.draw);
-            console.log(page+'>>'+size+'>>'+draw);
 
             let token = req.token;
 
@@ -72,12 +70,12 @@ module.exports = {
                 console.log(err);
             });
             console.log(result);
+            //Convert Array of object to Array of arrays for json data compatibility for datatable
             let dataArray = (result.data).map(function(obj) {
                 return Object.values(obj);
             });
-            result.data = dataArray;
-            console.log(dataArray);
-            // result.recordsTotal = 14;
+
+            result.data = dataArray;            
             result.recordsFiltered = result.recordsTotal;
             res.json(result);
         } catch (error) {
