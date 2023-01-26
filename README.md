@@ -20,6 +20,8 @@ This repository is a front-end client built with nodeJS and Ejs a template engin
 
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+<br/>
+![EJS](https://img.shields.io/static/v1?label=EJS&message=Javascript%20Template%20Engine&color=green)
 
 ## Browsers support
 
