@@ -62,6 +62,11 @@
 <%- include('./layout/scripts'); -%>
 
 <script>
+     $('.datetimepicker').flatpickr({
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+    });
+    
     // due to flatpickr this validation needed to be done separately 
     $('#myform').submit(function(event) {
         var date = $('#event_date').val();
@@ -69,9 +74,8 @@
         if(date=='') event.preventDefault();
     });
 
-    $('.datetimepicker').flatpickr({
-        enableTime: true,
-        dateFormat: "Y-m-d H:i",
+    $('.datetimepicker').on('click', function(event) {
+        $(".dates").hide();
     });
 
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
