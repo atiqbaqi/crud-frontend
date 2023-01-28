@@ -14,11 +14,8 @@ const auth = async (req, res, next) => {
                 console.error(error);
                 let data={};
                 data.errorCode = error.code;
+                data.status = error.code =='ECONNREFUSED' ? 503: error.response.status;
                 data.errorMessage = error.message;
-                if (error.code =='ECONNREFUSED'){
-                    data.errorCode = 503;
-                    data.errorMessage = error.message;
-                }
                 return res.render('error',data);
             });
     } catch (error) {
