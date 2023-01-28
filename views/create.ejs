@@ -33,9 +33,9 @@
                     </div>
                     <div class="col-4">
                         <label for="event_date" class="form-label">Date</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control datetimepicker" id="event_date" placeholder="YYYY-MM-DD hh:mm" name="event_date" required>
-                            <span class="input-group-text">
+                        <div class="input-group datetimepicker">
+                            <input type="text" class="form-control" id="event_date" placeholder="DD-MM-YYYY HH:mm" name="event_date" required data-input>
+                            <span class="input-group-text" data-toggle>
                                 <i class="fa fa-calendar"></i>
                             </span>
                             <div class="invalid-feedback dates">
@@ -64,19 +64,27 @@
 <script>
      $('.datetimepicker').flatpickr({
         enableTime: true,
+        // altInput: true,
+        // altFormat: "d-m-Y H:i",
         dateFormat: "Y-m-d H:i",
+        wrap: true,
+        onChange: function(selectedDates, dateStr, instance) {
+            $(".dates").hide();
+        }
     });
     
     // due to flatpickr this validation needed to be done separately 
     $('#myform').submit(function(event) {
         var date = $('#event_date').val();
-        $(".dates").show();
-        if(date=='') event.preventDefault();
+        if(date=='') {
+            $(".dates").show();
+            event.preventDefault();
+        }
     });
 
-    $('.datetimepicker').on('click', function(event) {
-        $(".dates").hide();
-    });
+    // $('.datetimepicker').on('click', function(event) {
+    //     $(".dates").hide();
+    // });
 
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
     var forms = document.querySelectorAll('.needs-validation');
