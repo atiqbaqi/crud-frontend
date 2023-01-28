@@ -45,6 +45,12 @@
                     row.push(`<a href='edit/${row[0]}'>Edit</a> <a href='delete/${row[0]}'>Delete</a>`);
                 });
                 return json.data;
+            },
+            error: function(xhr, error, thrown) {
+                // Handle the error here
+                console.error(xhr.responseText);
+                $('body').empty();
+                $('body').append(xhr.responseText);
             }
         },
         columns: [

@@ -12,10 +12,17 @@ const auth = async (req, res, next) => {
                 next();
             }).catch((error) => {
                 console.error(error);
-                return res.redirect('/error');
+                let data={};
+                data.errorCode = error.code;
+                data.errorMessage = error.message;
+                if (error.code =='ECONNREFUSED'){
+                    data.errorCode = 503;
+                    data.errorMessage = error.message;
+                }
+                return res.render('error',data);
             });
     } catch (error) {
-        return res.status(500).send('Authentication error: ' + error.message);
+        return res.status(500).send('something went wrong');
     }
 }
 
