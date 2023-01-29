@@ -24,7 +24,7 @@ docker build -t crud-frontend .
 ```
 2. create container from image and run
 ```bash
-docker run --name crud-frontend --rm -p 8080:8080 crud-frontend
+docker run --name crud-frontend --rm -p 8081:8081 crud-frontend
 ```
 
 ## Technologies used
