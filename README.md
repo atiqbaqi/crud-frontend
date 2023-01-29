@@ -16,6 +16,17 @@ This repository is a front-end client built with nodeJS and Ejs a template engin
 
 7. Access using the following url: <a href="http://localhost:8081" target="__blank">http://localhost:8081</a>
 
+### 🐳 Docker
+
+1. Build image
+```bash
+docker build -t crud-frontend .
+```
+2. create container from image and run
+```bash
+docker run --name crud-frontend --rm -p 8080:8080 crud-frontend
+```
+
 ## Technologies used
 
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
