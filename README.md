@@ -4,17 +4,26 @@ This repository is a front-end client built with nodeJS and Ejs a template engin
 
 ## Installation guide
 
+### 💪🏻 Non-Docker
+
+Required Tools: 
+- [Node.js](https://nodejs.org/en/download/)
+- [Git](https://git-scm.com/downloads) 
+
 1. You need to install nodejs and its package manager npm.
 
-2. Go to the application folder and open a terminal.
+2. Clone git repository -
+    ```bash
+    git clone https://github.com/atiqbaqi/crud-frontend.git
+    ```
 
-5. Install the application dependencies with the next command:
+3. Go to the application folder and open a terminal.
+
+4. Install the application dependencies with the next command:
     >npm install
 
-6. Execute the next command in the terminal.
+5. Execute the next command in the terminal.
     >npm start
-
-7. Access using the following url: <a href="http://localhost:8081" target="__blank">http://localhost:8081</a>
 
 ### 🐳 Docker
 
@@ -26,6 +35,8 @@ docker build -t crud-frontend .
 ```bash
 docker run --name crud-frontend --rm -p 8081:8081 crud-frontend
 ```
+
+<b>Finally access using the following url: <a href="http://localhost:8081" target="__blank">http://localhost:8081</a></b>
 
 ## Technologies used
 
