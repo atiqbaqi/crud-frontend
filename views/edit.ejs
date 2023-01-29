@@ -64,25 +64,34 @@
 <%- include('./layout/scripts'); -%>
 
 <script>
-    $('.datetimepicker').flatpickr({
-        enableTime: true,
-        dateFormat: "Y-m-d H:i",
-    });
+    $(document).ready(function() {
+        $('.datetimepicker').flatpickr({
+            enableTime: true,
+            dateFormat: "Y-m-d H:i"
+        });
 
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.querySelectorAll('.needs-validation')
+        // let event_date = $('#event_date').val();
+        // let iso_date = new Date(event_date);
+        // isoDate = iso_date.toISOString().slice(0, -5);
+        // let formattedDate = isoDate.replace(/T/g, " ");
+        // console.log(formattedDate);
+        // $('#event_date').val(formattedDate);    
 
-    // Loop over them and prevent submission
-    Array.prototype.slice.call(forms)
-    .forEach(function (form) {
-        form.addEventListener('submit', function (event) {
-        if (!form.checkValidity()) {
-            event.preventDefault()
-            event.stopPropagation()
-        }
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
 
-        form.classList.add('was-validated')
-        }, false)
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+            }, false)
+        });
     });
 </script>
 
