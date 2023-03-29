@@ -23,4 +23,13 @@ const auth = async (req, res, next) => {
     }
 }
 
-module.exports = auth;
+// Middleware to check if user is logged in
+const checkLoggedIn = (req, res, next) => {
+    if (req.session.user_id) {
+        next();
+    } else {
+        res.redirect('/login');
+    }
+}
+
+module.exports = {auth, checkLoggedIn};

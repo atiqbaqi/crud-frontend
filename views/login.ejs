@@ -1,0 +1,32 @@
+<%- include('./layout/header'); -%>
+
+<div class="container-fluid">
+    <div class="card col-md-10" style="margin: .5rem;">
+        <div class="card-header">
+            <h5 class="card-title">Login</h5>
+            <h6 class="card-subtitle text-muted">Don't have an account! <a href="/signup">Sign Up</a></h6>
+        </div>
+        <div class="card-body">
+            <form method="post" url="/login" id="myform">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+                </div>
+                <div class="mb-3">
+                    <label for="inputPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="inputPassword" name="password" required>
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </form>
+        </div>
+        <div class="card-footer text-muted text-center">
+            Copyright &copy; 2023 - Atiqul Hoque
+        </div>
+    </div>
+</div>
+
+<%- include('./layout/scripts'); -%>
+
+<%- include('./layout/footer'); -%>

@@ -34,7 +34,8 @@ module.exports = {
 
     async listEvents(req,res){
         try {
-            return res.render('events');
+            const user_name = req.session.user_name;
+            return res.render('events',{user_name});
         } catch (error) {
             console.log(error);
             return res.render('events');
@@ -106,7 +107,8 @@ module.exports = {
                 console.log(error);
             });
             console.log(event);
-            return res.render('edit',{event:event});
+            const user_name = req.session.user_name;
+            return res.render('edit',{event:event,user_name:user_name});
         } catch (error) {
             console.log(error);
             return res.render('create');
