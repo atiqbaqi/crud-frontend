@@ -19,6 +19,8 @@ module.exports = {
                 data : req.body
             };
 
+            post_event.data.created_by = req.session.user_id;
+
             await axios_instance(post_event)
             .then((response) => {
                 console.log(response.data);
@@ -131,6 +133,8 @@ module.exports = {
                 },
                 data:req.body
             };
+
+            update_event.data.updated_by = req.session.user_id;
             
             await axios_instance(update_event).then((response)=>{
                 console.log(response);
